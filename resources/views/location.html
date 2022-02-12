@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <style>
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="map"></div>
+
+
+
+</body>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH1WVpn0G8d9C1qUYICfq6vD9dqYr_vGY&callback=initMap">
+    </script>
+<script>
+    function initMap(lat, lng) {
+
+        var myLatLng = {
+            lat,
+            lng
+        };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+        });
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        function (position) {
+            initMap(position.coords.latitude, position.coords.longitude)
+        },
+        function errorCallback(error) {
+            console.log(error)
+        }
+    );
+</script>
+
+</html>
