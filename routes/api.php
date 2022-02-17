@@ -26,7 +26,9 @@ Route::post('register', 'App\Http\Controllers\Api\UserController@register');
 Route::middleware('auth:api')->group(function () {
     Route::post('profile', 'App\Http\Controllers\Api\UserController@profile');
     Route::get('profile_worker/{id}', 'App\Http\Controllers\Api\UserController@profile_worker');
+
     Route::apiResource('works', 'App\Http\Controllers\Api\WorkController');
+
     Route::post('edit/works/{id}', 'App\Http\Controllers\Api\WorkController@fix');
     Route::get('show/works/{id}', 'App\Http\Controllers\Api\WorkController@all_work_by_section');
     Route::get('show/works', 'App\Http\Controllers\Api\WorkController@all_works');

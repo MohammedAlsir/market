@@ -84,28 +84,28 @@ class WorkController extends Controller
     public function show($id)
     {
         $work = Work::with('likes')->with('comments')->find($id);
+
         if (!($work)) {
             return response()->json([
                 'error'     => true,
                 'message_ar'   => 'هذا العمل غير موجود',
             ], 200);
         }
-        if ($work->user_id == auth()->user()->id) {
+        // if ($work->user_id == auth()->user()->id) {
 
-
-            return response()->json([
-                'work' => $work,
-                'error' => false,
-                'message_en' => '',
-                'message_ar' => ''
-            ], 200);
-        } else {
-            return response()->json([
-                'error'     => true,
-                'message_en'   => 'Unauthorised ,Sorry, you do not have access to this page ',
-                'message_ar'   => 'عفوا ، ليس لديك صلاحيات الوصول إلى هذه الصفحة',
-            ], 200);
-        }
+        return response()->json([
+            'work' => $work,
+            'error' => false,
+            'message_en' => '',
+            'message_ar' => ''
+        ], 200);
+        // } else {
+        //     return response()->json([
+        //         'error'     => true,
+        //         'message_en'   => 'Unauthorised ,Sorry, you do not have access to this page ',
+        //         'message_ar'   => 'عفوا ، ليس لديك صلاحيات الوصول إلى هذه الصفحة',
+        //     ], 200);
+        // }
     }
 
     /**
