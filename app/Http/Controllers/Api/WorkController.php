@@ -237,10 +237,20 @@ class WorkController extends Controller
     {
         $works = Work::with(['user', 'likes', 'comments'])->get();
 
+        foreach ($works as $work) {
+            $work->user_name = $work->user->name;
+            $work->user_role = $work->user->role;
+            $work->user_email = $work->user->email;
+            $work->user_bio = $work->user->bio;
+
+            $work->like_count = $work->likes->count();
+            $work->comment_count = $work->comments->count();
+        }
+
 
         return response()->json([
             'works' => $works,
-            'error'     => true,
+            'error'     => false,
             'message_en'   => '',
             'message_ar'   => '',
         ], 200);

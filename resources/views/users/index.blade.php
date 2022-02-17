@@ -43,7 +43,7 @@
                             </td>
                             <td >
                                     @if ($user->role == 2)
-                                        مصمم
+                                    مصمم
                                     @elseif($user->role == 3)
                                     مصور
                                     @elseif($user->role == 4)
