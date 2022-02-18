@@ -38,6 +38,8 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('comments', 'App\Http\Controllers\Api\CommentController');
     Route::apiResource('orders', 'App\Http\Controllers\Api\OrderController');
     Route::get('all/orders/{id}', 'App\Http\Controllers\Api\OrderController@all');
+    Route::get('user_order', 'App\Http\Controllers\Api\OrderController@user_order');
+
 
 
     Route::post('status/orders/{id}', 'App\Http\Controllers\Api\OrderController@status');

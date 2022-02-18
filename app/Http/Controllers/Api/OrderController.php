@@ -25,6 +25,20 @@ class OrderController extends Controller
         ], 200);
     }
 
+    // new Function
+    public function user_order()
+    {
+        $orders = Order::with(['user', 'work' => function ($q) {
+            $q->where('user_id', auth()->user()->id);
+        }])->get();
+        return response()->json([
+            'orders' => $orders,
+            'error' => false,
+            'message_en' => '',
+            'message_ar' => ''
+        ], 200);
+    }
+
     public function all($id)
     {
         $orders = Order::with('work')->where('user_id', auth()->user()->id)->where('status', $id)->get();
