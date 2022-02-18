@@ -31,12 +31,22 @@ class OrderController extends Controller
         $orders = Order::with(['user', 'work' => function ($q) {
             $q->where('user_id', auth()->user()->id);
         }])->get();
-        return response()->json([
-            'orders' => $orders,
-            'error' => false,
-            'message_en' => '',
-            'message_ar' => ''
-        ], 200);
+
+        if ($orders->count() > 0) {
+            return response()->json([
+                'orders' => $orders,
+                'error' => false,
+                'message_en' => '',
+                'message_ar' => ''
+            ], 200);
+        } else {
+            return response()->json([
+                'orders' => $orders,
+                'error' => true,
+                'message_en' => '',
+                'message_ar' => ''
+            ], 200);
+        }
     }
 
     public function all($id)
